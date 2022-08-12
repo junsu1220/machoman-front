@@ -17,4 +17,7 @@ const Detail = () => {
   );
 };
 
+const DetailContainer = styled.div`
+`;
+
 export default Detail;
