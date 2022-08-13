@@ -3,9 +3,11 @@ import styled, { css } from "styled-components";
 import logo from "../src_assets/logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import hambergurBtn from "../src_assets/hambergurBtn.png";
+import Fire from "../src_assets/Fire.jpg"
 import useDetectClose from "./hooks/useDetectClose";
 import { Link, useNavigate } from "react-router-dom";
 import { logOutUser, __checkToken } from "../redux/modules/loginSlice";
+
 
 const Header = () => {
   const checkToken = useSelector((state) => state.login.user.result);
@@ -76,6 +78,7 @@ const StHeader = styled.header`
   align-items: center;
   padding: 20px;
   border: 1px solid black;
+  background-image: url(${Fire});
 `;
 
 const StHeaderLeftContainer = styled.div``;
