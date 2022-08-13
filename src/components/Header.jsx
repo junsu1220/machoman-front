@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../src_assets/logo.png";
 import hambergurBtn from "../src_assets/hambergurBtn.png";
+import Fire from "../src_assets/Fire.jpg"
 
 const Header = () => {
   return (
@@ -23,6 +24,7 @@ const StHeader = styled.header`
   align-items: center;
   padding: 20px;
   border: 1px solid black;
+  background-image: url(${Fire});
 `;
 
 const StHeaderLeftContainer = styled.div``;
