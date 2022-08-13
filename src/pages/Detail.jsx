@@ -5,7 +5,6 @@ import Header from "../components/Header";
 const Detail = () => {
   return (
     <>
-      <Header />
       <div>
         <div>title</div>
         <div>
@@ -17,7 +16,6 @@ const Detail = () => {
   );
 };
 
-const DetailContainer = styled.div`
-`;
+const DetailContainer = styled.div``;
 
 export default Detail;
