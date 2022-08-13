@@ -22,7 +22,7 @@ export default function Login() {
 const WrapLoginBox = styled.div`
   width: 400px;
   height: 600px;
-  margin: 100px auto;
+  margin: 80px auto;
   padding: 10px;
   background-color: var(--white);
   border-radius: 10px;
@@ -30,7 +30,7 @@ const WrapLoginBox = styled.div`
 const WrapLogo = styled.div`
   margin: 0 auto;
   object-fit: cover;
-
+  margin-bottom: 25px;
   width: 70%;
   height: 200px;
 `;

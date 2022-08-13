@@ -45,9 +45,11 @@ const Header = () => {
                   ) : (
                     <>
                       <Link to={"/login"} style={{ textDecoration: "none" }}>
-                        <button style={{ backgroundColor: "none" }}>
+                        <div
+                          style={{ backgroundColor: "none", color: "white" }}
+                        >
                           로그인
-                        </button>
+                        </div>
                       </Link>
                     </>
                   )}

@@ -22,7 +22,7 @@ export default function LoginTop({ title }) {
 
 const WrapTopLogin = styled.div`
   position: relative;
-  margin: 20px 0 50px 0;
+  margin: 20px 0 25px 0;
 `;
 const BackBtn = styled.button`
   position: absolute;
