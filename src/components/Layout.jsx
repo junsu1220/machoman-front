@@ -6,7 +6,7 @@ const Layout = (props) => {
 };
 
 const StLayout = styled.div`
-  max-width: 1200px;
+  max-width: 945px;
   max-height: 100vh;
 `;
 
