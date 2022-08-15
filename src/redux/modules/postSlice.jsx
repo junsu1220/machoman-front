@@ -3,17 +3,17 @@ import { api } from "../../shared/api";
 import produce from "immer";
 
 export const __loadPost = createAsyncThunk("post/LOAD_POST", async () => {
-  const response = await api.get("/api/posts");
+  const response = await api.get("post");
 
-  return response.data;
+  return response.data.result;
 });
 
 export const __addPost = createAsyncThunk(
   "post/ADD_POST",
   async (payload, thunkAPI) => {
-    const response = await api.post("/api/post", payload);
+    const response = await api.post("post/create", payload);
 
-    return response.data;
+    return response.data.result;
   }
 );
 
