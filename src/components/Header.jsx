@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import styled, { css } from "styled-components";
 import logo from "../src_assets/logo.png";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,15 @@ const Header = () => {
       </StHeaderLeftContainer>
       <HeaderFontsStyles>
         <h1>MACHOMAN</h1>
+        {/* <button
+          onClick={() => {
+            const req = axios
+              .get("http://3.35.123.192:1000/post")
+              .then((res) => console.log(res));
+          }}
+        >
+          test
+        </button> */}
       </HeaderFontsStyles>
       <StHeaderRightContainer>
         <DropdownContainer>
@@ -211,7 +221,7 @@ const Ul = styled.ul`
 
 const Li = styled.li``;
 
-const LinkWrapper = styled.a`
+const LinkWrapper = styled.div`
   font-size: 16px;
   text-decoration: none;
   color: white;
