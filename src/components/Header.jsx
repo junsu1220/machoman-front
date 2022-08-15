@@ -48,9 +48,11 @@ const Header = () => {
                   ) : (
                     <>
                       <Link to={"/login"} style={{ textDecoration: "none" }}>
-                        <button style={{ backgroundColor: "none" }}>
+                        <div
+                          style={{ backgroundColor: "none", color: "white" }}
+                        >
                           로그인
-                        </button>
+                        </div>
                       </Link>
                     </>
                   )}
@@ -83,7 +85,8 @@ const StHeader = styled.header`
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.3),
       rgba(199, 197, 197, 0.5)
-    ), url(${Fire});
+    ),
+    url(${Fire});
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
@@ -93,7 +96,7 @@ const StHeaderLeftContainer = styled.div``;
 
 const HeaderFontsStyles = styled.div`
   & > h1 {
-    font-family: 'RubinDirt';
+    font-family: "RubinDirt";
     /* font-family: 'AlfaSlabOne'; */
     font-size: 70px;
     color: #ffffffe7;
