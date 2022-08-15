@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 
 const Detail = () => {
   const postList = useSelector((state) => state.post);
-  const { id } = useParams();
 
   return (
     <Layout>

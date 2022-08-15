@@ -7,6 +7,8 @@ import { useBeforeunload } from "react-beforeunload";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __addPost } from "../redux/modules/postSlice";
+import defaultImg1 from "../src_assets/defaultImg1.png";
+
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -75,14 +77,8 @@ const Post = () => {
               onChange={selectImg}
               style={{ display: "none" }}
             />
-            <img
-              src={
-                attachment
-                  ? attachment
-                  : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
-              }
-              alt="업로드할 이미지"
-            />
+            <img src= {attachment? attachment : defaultImg1} alt="업로드할 이미지"/>
+
           </ImgSection>
           {/* pjs-out */}
           <textarea ref={text_ref} className="textIpt" placeholder="내용입력" />
