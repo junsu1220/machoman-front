@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 const Detail = () => {
+  const postList = useSelector((state) => state.post);
+
   return (
     <Layout>
       <StDetailLayOut>

@@ -49,9 +49,24 @@ const Header = () => {
                     <>
                       <Link to={"/login"} style={{ textDecoration: "none" }}>
                         <div
-                          style={{ backgroundColor: "none", color: "white" }}
+                          style={{
+                            backgroundColor: "none",
+                            color: "white",
+                            margin: "5px",
+                          }}
                         >
                           로그인
+                        </div>
+                      </Link>
+                      <Link to={"/post"} style={{ textDecoration: "none" }}>
+                        <div
+                          style={{
+                            backgroundColor: "none",
+                            color: "white",
+                            margin: "5px",
+                          }}
+                        >
+                          글쓰기
                         </div>
                       </Link>
                     </>
