@@ -55,7 +55,7 @@ const PostCard = () => {
         return (
           <PostBox key={dic.id}>
             {/* Link 로 props 보내기를 활용해 상세페이지에 들어갈 때 데이터를 전송 */}
-            <Link to={`/post/detail/${dic.id}`} state={{ data: dic }}>
+            <Link to={`/detail/${dic.id}`} state={{ data: dic }}>
               <TextBox>
                 <div>
                   <h4>{dic.title}</h4>
