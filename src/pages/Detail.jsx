@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import { useNavigate } from "react-router-dom";
 
 const Detail = () => {
   return (
@@ -8,7 +9,7 @@ const Detail = () => {
       <StDetailLayOut>
         <StDetailContainer>
           <StTitleLayout>
-          <h1>title</h1>
+            <h1>title</h1>
           </StTitleLayout>
           <StWriterLayout>
             <span>작성자:</span>
@@ -23,9 +24,7 @@ const Detail = () => {
           <div>여기에 내용이 들어갑니다.</div>
         </StDetailContainer>
         <StCommentLayout>
-          <StCommentBox>
-          댓글 박스
-          </StCommentBox>
+          <StCommentBox>댓글 박스</StCommentBox>
         </StCommentLayout>
         <StCommentContainer>
           <p>댓글 0</p>
@@ -36,7 +35,6 @@ const Detail = () => {
     </Layout>
   );
 };
-
 
 const StDetailLayOut = styled.div`
   display: flex;
