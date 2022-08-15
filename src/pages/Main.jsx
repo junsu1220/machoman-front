@@ -1,13 +1,15 @@
 import React from "react";
-
 import PostCard from "../components/main/PostCard";
+import Layout from "../components/Layout";
+
 
 const Main = () => {
   return (
-    <div>
+    <Layout>
       <PostCard />
-    </div>
+    </Layout>
   );
 };
+
 
 export default Main;
