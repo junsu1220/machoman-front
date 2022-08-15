@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { customAlphabet } from "nanoid";
 
 import { moreList, __loadPost } from "../../redux/modules/postSlice";
 
@@ -9,6 +10,7 @@ const PostCard = () => {
   const post_list = useSelector((state) => state.post.list);
   const listCount = useSelector((state) => state.post.countList);
   const dispatch = useDispatch();
+  const nanoid = customAlphabet("0123456789abcdef", 6);
   const [listState, setListState] = useState([]);
 
   const [lastPost, setLastPost] = useState(false);
@@ -53,7 +55,7 @@ const PostCard = () => {
     <Warp>
       {post_list.slice(0, listCount).map((dic, idx) => {
         return (
-          <PostBox key={dic.id}>
+          <PostBox key={nanoid()}>
             {/* Link 로 props 보내기를 활용해 상세페이지에 들어갈 때 데이터를 전송 */}
             <Link to={`/detail/${dic.id}`} state={{ data: dic }}>
               <TextBox>
@@ -61,10 +63,10 @@ const PostCard = () => {
                   <h4>{dic.title}</h4>
                 </div>
                 <div>
-                  <Text>{dic.content}</Text>
+                  <Text>{dic.image}</Text>
                 </div>
                 <div>
-                  <Like>comment : {dic.Comments.length}</Like>
+                  <Like>comment : {dic.nickname}</Like>
                 </div>
               </TextBox>
             </Link>
@@ -108,6 +110,7 @@ const TextBox = styled.div`
 
   h4 {
     text-align: left;
+    color: white;
   }
 
   p {

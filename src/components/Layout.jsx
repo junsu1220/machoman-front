@@ -4,11 +4,9 @@ import styled from "styled-components";
 const Layout = (props) => {
   return (
     <StContainer>
-      <StLayout>
-        {props.children}
-      </StLayout>
+      <StLayout>{props.children}</StLayout>
     </StContainer>
-  )
+  );
 };
 
 const StLayout = styled.div`
@@ -21,7 +19,7 @@ const StLayout = styled.div`
 `;
 
 const StContainer = styled.div`
-    background-color: #1f1e1e;
+  background-color: #1f1e1e;
 `;
 
 export default Layout;
