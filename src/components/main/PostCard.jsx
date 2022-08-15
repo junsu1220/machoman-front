@@ -82,7 +82,7 @@ const Warp = styled.div`
   /* row-gap: 10px; */
   width: 60vw;
   /* background-color: aqua; */
-  margin: 10px auto;
+  margin: 0px auto;
   padding: 20px;
 `;
 
