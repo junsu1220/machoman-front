@@ -12,8 +12,10 @@ export const __loadPost = createAsyncThunk("post/LOAD_POST", async () => {
 export const __addPost = createAsyncThunk(
   "post/ADD_POST",
   async (payload, thunkAPI) => {
+    console.log(payload);
     const response = await api.post("post/create", payload);
     console.log(response);
+
     console.log(response.data);
     console.log(response.data.result.result);
     return response.data.result.result;

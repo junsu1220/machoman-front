@@ -79,6 +79,7 @@ const Post = () => {
               onChange={selectImg}
               style={{ display: "none" }}
             />
+
             <div className="ImgDiv">
               <img
                 src={attachment ? attachment : defaultImg1}

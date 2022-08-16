@@ -11,6 +11,7 @@ import { logOutUser, __checkToken } from "../redux/modules/loginSlice";
 
 const Header = () => {
   const checkToken = useSelector((state) => state.login.user.result);
+  console.log(checkToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,6 +24,13 @@ const Header = () => {
     dispatch(logOutUser());
     navigate("/");
   };
+
+  React.useEffect(() => {
+    if (localToken) {
+      dispatch(__checkToken());
+    }
+  }, [localToken]);
+
   return (
     <StHeader>
       <StHeaderLeftContainer>
@@ -32,15 +40,6 @@ const Header = () => {
       </StHeaderLeftContainer>
       <HeaderFontsStyles>
         <h1>MACHOMAN</h1>
-        {/* <button
-          onClick={() => {
-            const req = axios
-              .get("http://3.35.123.192:1000/post")
-              .then((res) => console.log(res));
-          }}
-        >
-          test
-        </button> */}
       </HeaderFontsStyles>
       <StHeaderRightContainer>
         <DropdownContainer>
@@ -54,6 +53,17 @@ const Header = () => {
                   {checkToken ? (
                     <>
                       <LogoutBtn onClick={logOut}>로그아웃</LogoutBtn>
+                      <Link to={"/post"} style={{ textDecoration: "none" }}>
+                        <div
+                          style={{
+                            backgroundColor: "none",
+                            color: "white",
+                            margin: "5px",
+                          }}
+                        >
+                          글쓰기
+                        </div>
+                      </Link>
                     </>
                   ) : (
                     <>
@@ -191,7 +201,7 @@ const Menu = styled.div`
 const LogoutBtn = styled.button`
   width: 100%;
   height: 40px;
-  color: var(--black);
+  color: var(--white);
   border: none;
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0);
