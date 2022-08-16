@@ -79,6 +79,7 @@ const PostCard = () => {
         })}
       </Warp>
     </>
+
   );
 };
 const Warp = styled.div`

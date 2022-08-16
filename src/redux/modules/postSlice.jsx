@@ -4,8 +4,8 @@ import produce from "immer";
 
 export const __loadPost = createAsyncThunk("post/LOAD_POST", async () => {
   const response = await api.get("post");
-  console.log(response);
-  console.log(response.data.result.result);
+  // console.log(response);
+  // console.log(response.data.result.result);
   return response.data.result.result;
 });
 
@@ -16,7 +16,9 @@ export const __addPost = createAsyncThunk(
     const response = await api.post("post/create", payload);
     console.log(response);
 
-    return response.data.result;
+    console.log(response.data);
+    console.log(response.data.result.result);
+    return response.data.result.result;
   }
 );
 
