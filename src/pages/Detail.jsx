@@ -104,6 +104,14 @@ const StCommentContainer = styled.div`
   margin-top: 30px;
   gap: 10px;
   color: darkgray;
+
+  & > p {
+    align-self: flex-start;
+  }
+
+  & > button {
+    align-self: flex-end;
+  }
 `;
 
 const StCommentTextArea = styled.textarea`

@@ -53,6 +53,22 @@ const PostCard = () => {
   });
   return (
     <Warp>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+      <PostBox/>
+
+
       {post_list.slice(0, listCount).map((dic, idx) => {
         return (
           <PostBox key={nanoid()}>

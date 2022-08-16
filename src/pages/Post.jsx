@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { __addPost } from "../redux/modules/postSlice";
 import defaultImg1 from "../src_assets/defaultImg1.png";
 
-
 const Post = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,22 +52,25 @@ const Post = () => {
         <StDetailContainer>
           <StTitleLayout>
             {" "}
-            <textarea ref={title_ref} placeholder="제목을 입력하세요." />
+            <input ref={title_ref} placeholder="제목을 입력하세요." />
           </StTitleLayout>
           <StWriterLayout>
             <span>작성자:</span>
             <p>2022. 08. xx. 00:00</p>
           </StWriterLayout>
           <StUpdateLayout>
-            <p>수정</p>
+            <p
+              onClick={() => {
+                navigate("/edit");
+              }}
+            >
+              수정
+            </p>
             <p>|</p>
             <p>삭제</p>
           </StUpdateLayout>
           {/* pjs-in */}
           <ImgSection>
-            <button>
-              <label htmlFor="file-input">파일선택</label>
-            </button>
             <input
               id="file-input"
               type="file"
@@ -77,54 +79,31 @@ const Post = () => {
               onChange={selectImg}
               style={{ display: "none" }}
             />
-            <img src= {attachment? attachment : defaultImg1} alt="업로드할 이미지"/>
-
+            <div className="ImgDiv">
+              <img
+                src={attachment ? attachment : defaultImg1}
+                alt="업로드할 이미지"
+                className={attachment? "default" : ""}
+              />
+            </div>
           </ImgSection>
           {/* pjs-out */}
-          <textarea ref={text_ref} className="textIpt" placeholder="내용입력" />
+          <textarea
+            ref={text_ref}
+            className="textIpt"
+            placeholder="내용을 입력하세요."
+          />
         </StDetailContainer>
-        <StCommentLayout>
-          <StCommentBox>댓글 박스</StCommentBox>
-        </StCommentLayout>
         <StCommentContainer>
-          <p>댓글 0</p>
-          <StCommentTextArea>asdf</StCommentTextArea>
+          <button>
+            <label htmlFor="file-input">파일선택</label>
+          </button>
           <button onClick={addPost}>작성하기</button>
         </StCommentContainer>
       </StDetailLayOut>
     </Layout>
   );
 };
-
-const ImgSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  label {
-    cursor: pointer;
-  }
-  img {
-    width: 89%;
-    height: 400px;
-    margin-bottom: 30px;
-    border-radius: 16px;
-    margin-left: 35px;
-  }
-  button {
-    width: 100px;
-    height: 36px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    background-color: #000000;
-    border: none;
-    border-radius: 7px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.5s;
-    &:hover {
-      background-color: #666666;
-    }
-  }
-`;
 
 const StDetailLayOut = styled.div`
   display: flex;
@@ -152,12 +131,13 @@ const StDetailContainer = styled.div`
     width: 89%;
     height: 300px;
     max-height: 100vh;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 20px;
     margin-left: 35px;
     opacity: 70%;
+    padding: 10px;
   }
-  button {
+  /* button {
     margin: 30px 0px 10px 10px;
     position: relative;
     left: 320px;
@@ -167,7 +147,7 @@ const StDetailContainer = styled.div`
     border-radius: 10px;
     background-color: transparent;
     color: white;
-  }
+  } */
 `;
 
 const StTitleLayout = styled.div`
@@ -176,11 +156,15 @@ const StTitleLayout = styled.div`
   padding-top: 30px;
   padding-bottom: 10px;
   color: white;
-  textarea {
-    width: 99%;
+  input {
+    width: 100%;
     border: none;
     resize: none;
-    opacity: 70%;
+    opacity: 100%;
+    color: white;
+    background-color: #1f1e1e;
+    font-size: 30px;
+    font-weight: 700;
   }
 `;
 
@@ -198,28 +182,66 @@ const StUpdateLayout = styled.div`
   justify-content: start;
   padding-left: 40px;
   color: white;
+
+  & > p {
+    cursor: pointer;
+    &:hover {
+      font-weight: 700;
+    }
+  }
 `;
 
-const StCommentLayout = styled.div`
-  margin-top: 20px;
-`;
-
-const StCommentBox = styled.div`
-  width: 750px;
-  height: 100px;
-  border: 4px solid darkgray;
-  color: white;
+const ImgSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  label {
+    cursor: pointer;
+  }
+  .ImgDiv {
+    width: 89%;
+    height: 400px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    margin-left: 35px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    img.default {
+      flex: 1 1 auto;
+      /* min-height: 400px;
+      width: 100%; */
+    }
+    /* background: url(${(props) => props.imgurl}); */
+  }
+  button {
+    width: 100px;
+    height: 36px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: #000000;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      background-color: #666666;
+    }
+  }
 `;
 
 const StCommentContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  flex-flow: column;
+  flex-flow: row;
   margin-top: 30px;
+  margin-bottom: 50px;
   gap: 10px;
   color: darkgray;
-  button {
+  width: 750px;
+  & > button {
     width: 100px;
     height: 40px;
     margin-bottom: 20px;
@@ -234,16 +256,6 @@ const StCommentContainer = styled.div`
       background-color: #666666;
     }
   }
-`;
-
-const StCommentTextArea = styled.textarea`
-  width: 750px;
-  height: 80px;
-`;
-
-const StCommentBtn = styled.button`
-  width: 100px;
-  height: 30px;
 `;
 
 export default Post;

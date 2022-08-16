@@ -11,7 +11,8 @@ const Layout = (props) => {
 
 const StLayout = styled.div`
   max-width: 945px;
-  max-height: 100%;
+  /* max-height: 100%; */
+  min-height: calc(100vh - 123px);
   margin: 0 auto;
   padding: 0 20px;
   box-shadow: rgba(240, 240, 244, 0.2) 0px 7px 29px 0px;
