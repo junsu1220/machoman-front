@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { customAlphabet } from "nanoid";
-
+import PostSearch from "./postSearch";
 import { moreList, __loadPost } from "../../redux/modules/postSlice";
 
 const PostCard = () => {
@@ -52,28 +52,33 @@ const PostCard = () => {
     };
   });
   return (
-    <Warp>
-      {post_list.slice(0, listCount).map((dic, idx) => {
-        return (
-          <PostBox key={nanoid()}>
-            {/* Link 로 props 보내기를 활용해 상세페이지에 들어갈 때 데이터를 전송 */}
-            <Link to={`/detail/${dic.id}`} state={{ data: dic }}>
-              <TextBox>
-                <div>
-                  <h4>{dic.title}</h4>
-                </div>
-                <div>
-                  <Text>{dic.image}</Text>
-                </div>
-                <div>
-                  <Like>comment : {dic.nickname}</Like>
-                </div>
-              </TextBox>
-            </Link>
-          </PostBox>
-        );
-      })}
-    </Warp>
+    <>
+      <WrapSearch>
+        <PostSearch />
+      </WrapSearch>
+      <Warp>
+        {post_list.slice(0, listCount).map((dic, idx) => {
+          return (
+            <PostBox key={nanoid()}>
+              {/* Link 로 props 보내기를 활용해 상세페이지에 들어갈 때 데이터를 전송 */}
+              <Link to={`/detail/${dic.id}`} state={{ data: dic }}>
+                <TextBox>
+                  <div>
+                    <h4>{dic.title}</h4>
+                  </div>
+                  <div>
+                    <Text>{dic.image}</Text>
+                  </div>
+                  <div>
+                    <Like>comment : {dic.nickname}</Like>
+                  </div>
+                </TextBox>
+              </Link>
+            </PostBox>
+          );
+        })}
+      </Warp>
+    </>
   );
 };
 const Warp = styled.div`
@@ -129,6 +134,12 @@ const Text = styled.p`
 const Like = styled.p`
   float: left;
   color: gray;
+`;
+
+const WrapSearch = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 `;
 
 export default PostCard;

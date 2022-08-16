@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { __addPost } from "../redux/modules/postSlice";
 import defaultImg1 from "../src_assets/defaultImg1.png";
 
-
 const Post = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,8 +76,10 @@ const Post = () => {
               onChange={selectImg}
               style={{ display: "none" }}
             />
-            <img src= {attachment? attachment : defaultImg1} alt="업로드할 이미지"/>
-
+            <img
+              src={attachment ? attachment : defaultImg1}
+              alt="업로드할 이미지"
+            />
           </ImgSection>
           {/* pjs-out */}
           <textarea ref={text_ref} className="textIpt" placeholder="내용입력" />
