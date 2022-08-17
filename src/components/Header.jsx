@@ -11,7 +11,8 @@ import { logOutUser, __checkToken } from "../redux/modules/loginSlice";
 
 const Header = () => {
   const checkToken = useSelector((state) => state.login.user.result);
-  console.log(checkToken);
+  // console.log(useSelector((state) => state.login.user));
+  // console.log(checkToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

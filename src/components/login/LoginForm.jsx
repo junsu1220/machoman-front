@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Input from "../../elems/Input";
 import Button from "../../elems/Button";
-import { __login } from "../../redux/modules/loginSlice";
+import { __login, __kakaoLogin } from "../../redux/modules/loginSlice";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -22,6 +22,19 @@ export default function LoginForm() {
     e.preventDefault();
     console.log(loginData);
     const loginState = await dispatch(__login(loginData));
+    if (loginState.type === "log/LOGIN_LOG/rejected") {
+      alert("아이디 혹은 비밀번호가 틀렸습니다.");
+    }
+    if (loginState.payload.result) {
+      alert(`${loginState.payload.nickname} 님 환영합니다 :) `);
+      navigate("/");
+    }
+  };
+
+  const submitKakaoLogin = async (e) => {
+    e.preventDefault();
+    console.log(loginData);
+    const loginState = await dispatch(__kakaoLogin(loginData));
     if (loginState.type === "log/LOGIN_LOG/rejected") {
       alert("아이디 혹은 비밀번호가 틀렸습니다.");
     }
@@ -63,6 +76,15 @@ export default function LoginForm() {
         disabled={!formstate}
       >
         로그인
+      </Button>
+      <Button
+        onClick={submitKakaoLogin}
+        type="submit"
+        size="size1"
+        bgcolor={"yellow"}
+        color={"black"}
+      >
+        카카오 로그인
       </Button>
     </WrapForm>
   );

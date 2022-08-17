@@ -36,7 +36,7 @@ const Post = () => {
 
   const addPost = () => {
     const formData = new FormData();
-
+    console.log(fileInput.current.files[0]);
     formData.append("image", fileInput.current.files[0]);
     formData.append("title", title_ref.current.value);
     formData.append("content", text_ref.current.value);
@@ -75,6 +75,7 @@ const Post = () => {
               id="file-input"
               type="file"
               accept="img/*"
+              name="image"
               ref={fileInput}
               onChange={selectImg}
               style={{ display: "none" }}
@@ -84,16 +85,12 @@ const Post = () => {
               <img
                 src={attachment ? attachment : defaultImg1}
                 alt="업로드할 이미지"
-                className={attachment? "default" : ""}
+                className={attachment ? "default" : ""}
               />
             </div>
           </ImgSection>
           {/* pjs-out */}
-          <textarea
-            ref={text_ref}
-            className="textIpt"
-            placeholder="내용을 입력하세요."
-          />
+          <textarea ref={text_ref} />
         </StDetailContainer>
         <StCommentContainer>
           <button>
@@ -128,7 +125,7 @@ const StDetailContainer = styled.div`
   margin-top: 80px;
   text-align: left;
 
-  textarea.textIpt {
+  textarea {
     width: 89%;
     height: 300px;
     max-height: 100vh;
