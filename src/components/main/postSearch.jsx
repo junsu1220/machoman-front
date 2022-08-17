@@ -4,25 +4,40 @@ import styled from "styled-components";
 import back2 from "../../src_assets/back2.png";
 import search2 from "../../src_assets/search.png";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __searchPost } from "../../redux/modules/postSlice";
+import Button from "../../elems/Button";
+import { changeKeyword } from "../../redux/modules/postSlice";
 
 const PostSearch = () => {
   const [search, setSearch] = useState("");
+  const searchKey = useSelector((state) => state.post.keyword);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <div>
       <Wrap>
         {" "}
         <BackBtn>
-          <StBackImg />
+          <SearchKeyBtn
+            onClick={() => {
+              dispatch(changeKeyword("writer"));
+            }}
+          >
+            작성자
+          </SearchKeyBtn>
+          <SearchKeyBtn
+            onClick={() => {
+              dispatch(changeKeyword("title"));
+            }}
+          >
+            제목
+          </SearchKeyBtn>
         </BackBtn>
         <SearchInput
           value={search}
-          placeholder="검색 키워드를 입력해주세요"
+          placeholder="작성자 또는 제목을 입력해주세요"
           onChange={(e) => {
             setSearch(e.target.value);
           }}
@@ -30,7 +45,7 @@ const PostSearch = () => {
             if (e.key === "Enter") {
               e.preventDefault();
               console.log(search);
-              dispatch(__searchPost(search));
+              dispatch(__searchPost([search, searchKey]));
               setSearch("");
             }
           }}
@@ -42,7 +57,7 @@ const PostSearch = () => {
               setSearch("");
             } else {
               e.preventDefault();
-              dispatch(__searchPost(search));
+              dispatch(__searchPost([search, searchKey]));
               setSearch("");
             }
           }}
@@ -53,6 +68,26 @@ const PostSearch = () => {
     </div>
   );
 };
+
+const SearchKeyBtn = styled.div`
+  width: 100px;
+  height: 36px;
+  margin-right: 10px;
+  font-size: 25px;
+  background-color: white;
+  border: none;
+  border-radius: 7px;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    background-color: #666666;
+  }
+  &:checked {
+    background-color: #666666;
+  }
+`;
 
 const Wrap = styled.div`
   width: 900px;
@@ -82,7 +117,7 @@ const StSearchImg = styled.div`
 `;
 
 const SearchInput = styled.input`
-  width: 700px;
+  width: 650px;
   padding: 10px;
   outline: none;
   border: none;
@@ -110,8 +145,7 @@ const SearchBtn = styled.div`
   border: none;
 `;
 const BackBtn = styled.div`
-  /* font-size: 20px;
-  border: none; */
+  display: flex;
 `;
 
 export default PostSearch;

@@ -11,6 +11,17 @@ export const __login = createAsyncThunk(
     return response.data;
   }
 );
+
+export const __kakaoLogin = createAsyncThunk(
+  "log/LOGIN_LOG",
+  async (payload, thunkAPI) => {
+    const response = await api.get("/user/kakao");
+    console.log(response.data);
+    localStorage.setItem("token", response.data.result.result);
+    return response.data;
+  }
+);
+
 export const __checkToken = createAsyncThunk(
   "__checkToken/CHECK_LOG",
   async (payload, thunkAPI) => {
@@ -40,7 +51,7 @@ const loginSlice = createSlice({
         state.loading = false;
         state.user = {
           nickName: action.payload.nickname,
-          result: action.payload.result.result,
+          result: true,
         };
       })
       .addCase(__login.rejected, (state, action) => {

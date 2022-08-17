@@ -67,10 +67,13 @@ const PostCard = () => {
                     <h4>{dic.title}</h4>
                   </div>
                   <div>
-                    <Text>{dic.image}</Text>
+                    <img
+                      src={`http://15.164.164.146${dic.image}`}
+                      alt={"test"}
+                    />
                   </div>
                   <div>
-                    <Like>comment : {dic.nickname}</Like>
+                    <h4>{dic.content}</h4>
                   </div>
                 </TextBox>
               </Link>
@@ -79,7 +82,6 @@ const PostCard = () => {
         })}
       </Warp>
     </>
-
   );
 };
 const Warp = styled.div`
@@ -121,6 +123,11 @@ const TextBox = styled.div`
 
   p {
     text-align: left;
+    color: white;
+  }
+  img {
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -134,7 +141,7 @@ const Text = styled.p`
 
 const Like = styled.p`
   float: left;
-  color: gray;
+  color: white;
 `;
 
 const WrapSearch = styled.form`
