@@ -31,14 +31,6 @@ const Detail = () => {
         />
         <div>{newPostData[0].content}</div>
       </StDetailContainer>
-      <StCommentLayout>
-        <StCommentBox>댓글 박스</StCommentBox>
-      </StCommentLayout>
-      <StCommentContainer>
-        <p>댓글 0</p>
-        <StCommentTextArea />
-        <StCommentBtn>등록</StCommentBtn>
-      </StCommentContainer>
     </StDetailLayOut>
   );
 };
@@ -47,12 +39,6 @@ const StDetailLayOut = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  /* width: 935px;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-  /* background-color: black; */
 `;
 const StDetailContainer = styled.div`
   width: 750px;
@@ -86,36 +72,5 @@ const StUpdateLayout = styled.div`
   padding-left: 40px;
   color: white;
 `;
-const StCommentLayout = styled.div`
-  margin-top: 20px;
-`;
-const StCommentBox = styled.div`
-  width: 750px;
-  height: 100px;
-  border: 4px solid darkgray;
-  color: white;
-`;
-const StCommentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  margin-top: 30px;
-  gap: 10px;
-  color: darkgray;
-  & > p {
-    align-self: flex-start;
-  }
-  & > button {
-    align-self: flex-end;
-  }
-`;
-const StCommentTextArea = styled.textarea`
-  width: 750px;
-  height: 80px;
-`;
-const StCommentBtn = styled.button`
-  width: 100px;
-  height: 30px;
-`;
+
 export default Detail;

@@ -7,7 +7,7 @@ import { api } from "../../shared/api";
 //   // console.log(response.data.result.result);
 //   return response.data.result.result;
 // });
-export const __loadPost = createAsyncThunk("post/LOAD_POST", async (payload) => {
+export const __loadPost = createAsyncThunk("comment/LOAD_POST", async (payload) => {
   const response = await api.get(`post/${payload}`);
   // console.log(response);
   console.log(response.data.result.result.Comments);
@@ -54,7 +54,7 @@ const commentSlice = createSlice({
   name: "comment",
   initialState: {
     list: [],
-    comment: "",
+    // comment: "",
   },
   reducers: {},
 
