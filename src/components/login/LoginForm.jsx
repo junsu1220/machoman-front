@@ -20,7 +20,6 @@ export default function LoginForm() {
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    console.log(loginData);
     const loginState = await dispatch(__login(loginData));
     if (loginState.type === "log/LOGIN_LOG/rejected") {
       alert("아이디 혹은 비밀번호가 틀렸습니다.");
@@ -33,7 +32,6 @@ export default function LoginForm() {
 
   const submitKakaoLogin = async (e) => {
     e.preventDefault();
-    console.log(loginData);
     const loginState = await dispatch(__kakaoLogin(loginData));
     if (loginState.type === "log/LOGIN_LOG/rejected") {
       alert("아이디 혹은 비밀번호가 틀렸습니다.");
