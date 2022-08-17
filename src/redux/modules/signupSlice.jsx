@@ -6,7 +6,7 @@ export const __signup = createAsyncThunk(
   "signup/SIGNUP_LOG",
   async (payload, thunkAPI) => {
     const response = await api.post("/user/join", payload);
-    console.log(response.data);
+
     alert("회원가입이 완료되었습니다.");
     return response.data.result;
   }
@@ -17,19 +17,18 @@ export const __checkUsername = createAsyncThunk(
   async (payload, thunkAPI) => {
     const response = await api.get(`/user/check_email/${payload}`);
     if (!response.data.result) alert("동일한 아이디가 존재합니다");
-    console.log(response);
-    return response.data.result;
+
+    return response.data.success;
   }
 );
 
 export const __checkNickname = createAsyncThunk(
   "signup/CHECKNICK_LOG",
   async (payload, thunkAPI) => {
-    const response = await api.get(`/user/check_nickname/${payload}`);
+    const response = await api.get(`/user/check_nick/${payload}`);
     if (!response.data.result) alert("동일한 닉네임이 존재합니다.");
-    console.log(response);
 
-    return response.data.result;
+    return response.data.success;
   }
 );
 
@@ -57,7 +56,7 @@ const signupSlice = createSlice({
       })
 
       .addCase(__checkUsername.fulfilled, (state, action) => {
-        state.checkname = action.payload;
+        state.checkName = action.payload;
       })
       .addCase(__checkUsername.rejected, (state, action) => {
         state.checkName = true;

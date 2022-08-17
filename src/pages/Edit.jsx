@@ -40,7 +40,6 @@ const Post = () => {
     formData.append("image", fileInput.current.files[0]);
     formData.append("title", title_ref.current.value);
     formData.append("content", text_ref.current.value);
-    console.log("formData", formData);
 
     dispatch(__addPost(formData));
     navigate("/");

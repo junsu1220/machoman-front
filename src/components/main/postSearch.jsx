@@ -35,29 +35,63 @@ const PostSearch = () => {
             제목
           </SearchKeyBtn>
         </BackBtn>
-        <SearchInput
-          value={search}
-          placeholder="작성자 또는 제목을 입력해주세요"
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              console.log(search);
-              dispatch(__searchPost([search, searchKey]));
-              setSearch("");
-            }
-          }}
-        />
+        {searchKey.payload === "writer" ? (
+          searchKey.payload === "writer" ? (
+            <>
+              <SearchInput
+                value={search}
+                placeholder="작성자를 입력해주세요"
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    dispatch(__searchPost([search, searchKey.payload]));
+                    setSearch("");
+                  }
+                }}
+              />
+            </>
+          ) : (
+            <SearchInput
+              value={search}
+              placeholder="제목을 입력해주세요"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  dispatch(__searchPost([search, searchKey.payload]));
+                  setSearch("");
+                }
+              }}
+            />
+          )
+        ) : (
+          <SearchInput
+            value={search}
+            placeholder="작성자 또는 제목 버튼을 눌러주세요"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                window.alert("작성자 또는 제목 버튼을 눌러주세요!");
+              }
+            }}
+          />
+        )}
         <SearchBtn
           onClick={(e) => {
             if (search === "") {
-              window.alert("검색 키워드를 입력해주세요!");
+              window.alert("작성자 또는 제목 버튼을 눌러주세요!");
               setSearch("");
             } else {
               e.preventDefault();
-              dispatch(__searchPost([search, searchKey]));
+              dispatch(__searchPost([search, searchKey.payload]));
               setSearch("");
             }
           }}

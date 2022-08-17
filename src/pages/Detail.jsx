@@ -8,8 +8,6 @@ const Detail = () => {
   const { id } = useParams();
   const post_list = useSelector((state) => state.post.list);
   const newPostData = post_list.filter((v) => v.id === Number(id));
-  console.log(newPostData);
-  console.log(post_list);
 
   return (
     <Layout>

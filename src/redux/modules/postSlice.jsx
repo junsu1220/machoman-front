@@ -4,20 +4,13 @@ import produce from "immer";
 
 export const __loadPost = createAsyncThunk("post/LOAD_POST", async () => {
   const response = await api.get("post");
-  // console.log(response);
-  // console.log(response.data.result.result);
   return response.data.result.result;
 });
 
 export const __addPost = createAsyncThunk(
   "post/ADD_POST",
   async (payload, thunkAPI) => {
-    console.log(payload);
     const response = await api.post("post/create", payload);
-    console.log(response);
-    console.log(response.data);
-    console.log(response.data.result.result);
-    console.log(response.data.result.result.image);
     return response.data.result.result;
   }
 );
@@ -43,15 +36,24 @@ export const __deletePost = createAsyncThunk(
 export const __searchPost = createAsyncThunk(
   "post/SEARCH_POST",
   async (payload) => {
-    try {
-      const response = await api.get(
-        `/post/search/${payload[1]}=${payload[0]}`
-      );
+    if (payload[1] === "writer") {
+      try {
+        const response = await api.get(`/post/search/${payload[0]}`);
 
-      return response.data;
-    } catch (error) {
-      const errorMsg = JSON.parse(error.request.response);
-      alert(errorMsg.msg);
+        return response.data;
+      } catch (error) {
+        const errorMsg = JSON.parse(error.request.response);
+        alert(errorMsg.msg);
+      }
+    } else {
+      try {
+        const response = await api.get(`/post/search/${payload[0]}`);
+
+        return response.data;
+      } catch (error) {
+        const errorMsg = JSON.parse(error.request.response);
+        alert(errorMsg.msg);
+      }
     }
   }
 );
@@ -64,7 +66,7 @@ const postSlice = createSlice({
     error: null,
     session: false,
     countList: 9,
-    keyword: "",
+    keyword: "writer",
   },
   reducers: {
     moreList: (state, payload) => {
@@ -82,7 +84,6 @@ const postSlice = createSlice({
     builder
 
       .addCase(__loadPost.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
         state.list = action.payload;
         state.session = true;

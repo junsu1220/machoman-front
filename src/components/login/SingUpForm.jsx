@@ -39,9 +39,7 @@ export default function SignUpForm() {
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    console.log(signData);
     const checkState = await dispatch(__signup(signData));
-    console.log(checkState);
 
     if (checkState.payload) {
       navigate("/login");
