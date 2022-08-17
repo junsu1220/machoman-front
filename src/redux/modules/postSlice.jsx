@@ -15,9 +15,9 @@ export const __addPost = createAsyncThunk(
     console.log(payload);
     const response = await api.post("post/create", payload);
     console.log(response);
-
     console.log(response.data);
     console.log(response.data.result.result);
+    console.log(response.data.result.result.image);
     return response.data.result.result;
   }
 );
@@ -44,7 +44,9 @@ export const __searchPost = createAsyncThunk(
   "post/SEARCH_POST",
   async (payload) => {
     try {
-      const response = await api.get(`/api/title?title=${payload}`);
+      const response = await api.get(
+        `/post/search/${payload[1]}=${payload[0]}`
+      );
 
       return response.data;
     } catch (error) {
@@ -62,6 +64,7 @@ const postSlice = createSlice({
     error: null,
     session: false,
     countList: 9,
+    keyword: "",
   },
   reducers: {
     moreList: (state, payload) => {
@@ -69,6 +72,9 @@ const postSlice = createSlice({
     },
     resetListCount: (state, payload) => {
       state.countList = 9;
+    },
+    changeKeyword: (state, payload) => {
+      state.keyword = payload;
     },
   },
 
@@ -128,5 +134,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { moreList, resetListCount } = postSlice.actions;
+export const { moreList, resetListCount, changeKeyword } = postSlice.actions;
 export default postSlice.reducer;

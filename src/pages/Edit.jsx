@@ -82,15 +82,11 @@ const Post = () => {
               <img
                 src={attachment ? attachment : defaultImg1}
                 alt="업로드할 이미지"
-                className={attachment? "default" : ""}
+                className={attachment ? "default" : ""}
               />
             </div>
           </ImgSection>
-          <textarea
-            ref={text_ref}
-            className="textIpt"
-            placeholder="내용을 입력하세요."
-          />
+          <textarea ref={text_ref} defaultValue="내용을 입력하세요." />
         </StDetailContainer>
         <StCommentContainer>
           <button>
@@ -119,7 +115,7 @@ const StDetailContainer = styled.div`
   margin-top: 80px;
   text-align: left;
 
-  textarea.textIpt {
+  textarea {
     width: 89%;
     height: 300px;
     max-height: 100vh;

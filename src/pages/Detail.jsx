@@ -1,31 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 const Detail = () => {
-  const postList = useSelector((state) => state.post);
+  const { id } = useParams();
+  const post_list = useSelector((state) => state.post.list);
+  const newPostData = post_list.filter((v) => v.id === Number(id));
+  console.log(newPostData);
+  console.log(post_list);
 
   return (
     <Layout>
       <StDetailLayOut>
         <StDetailContainer>
           <StTitleLayout>
-            <h1>title</h1>
+            <h1>{newPostData[0].title}</h1>
           </StTitleLayout>
           <StWriterLayout>
-            <span>작성자:</span>
-            <p>2022. 08. xx. 00:00</p>
+            <span>{newPostData[0].nickname}</span>
+            <p>{newPostData[0].craetedAt}</p>
           </StWriterLayout>
           <StUpdateLayout>
             <p>수정</p>
             <p>|</p>
             <p>삭제</p>
           </StUpdateLayout>
-          <div>이미지박스</div>
-          <div>여기에 내용이 들어갑니다.</div>
+          <img
+            src={`http://15.164.164.146${newPostData[0].image}`}
+            alt={"test"}
+          />
+          <div>{newPostData[0].content}</div>
         </StDetailContainer>
         <StCommentLayout>
           <StCommentBox>댓글 박스</StCommentBox>
@@ -59,6 +65,9 @@ const StDetailContainer = styled.div`
   border: 4px solid darkgray;
   border-radius: 5px;
   margin-top: 80px;
+  img {
+    margin: auto;
+  }
 `;
 
 const StTitleLayout = styled.div`
