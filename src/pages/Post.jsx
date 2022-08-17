@@ -56,17 +56,6 @@ const Post = () => {
             <span>작성자:</span>
             <p>2022. 08. xx. 00:00</p>
           </StWriterLayout>
-          <StUpdateLayout>
-            <p
-              onClick={() => {
-                navigate("/edit");
-              }}
-            >
-              수정
-            </p>
-            <p>|</p>
-            <p>삭제</p>
-          </StUpdateLayout>
           {/* pjs-in */}
           <ImgSection>
             <input
@@ -173,19 +162,19 @@ const StWriterLayout = styled.div`
   color: white;
 `;
 
-const StUpdateLayout = styled.div`
-  display: flex;
-  justify-content: start;
-  padding-left: 40px;
-  color: white;
+// const StUpdateLayout = styled.div`
+//   display: flex;
+//   justify-content: start;
+//   padding-left: 40px;
+//   color: white;
 
-  & > p {
-    cursor: pointer;
-    &:hover {
-      font-weight: 700;
-    }
-  }
-`;
+//   & > p {
+//     cursor: pointer;
+//     &:hover {
+//       font-weight: 700;
+//     }
+//   }
+// `;
 
 const ImgSection = styled.div`
   display: flex;
