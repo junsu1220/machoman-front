@@ -38,18 +38,18 @@ export const __searchPost = createAsyncThunk(
   async (payload) => {
     if (payload[1] === "writer") {
       try {
-        const response = await api.get(`/post/search/${payload[0]}`);
-
-        return response.data;
+        const response = await api.get(`/post/search/?writer=${payload[0]}`);
+        console.log(response.data.result.result);
+        return response.data.result.result.Posts;
       } catch (error) {
         const errorMsg = JSON.parse(error.request.response);
         alert(errorMsg.msg);
       }
     } else {
       try {
-        const response = await api.get(`/post/search/${payload[0]}`);
+        const response = await api.get(`/post/search/?title=${payload[0]}`);
 
-        return response.data;
+        return response.data.result.result.Posts;
       } catch (error) {
         const errorMsg = JSON.parse(error.request.response);
         alert(errorMsg.msg);
@@ -122,9 +122,10 @@ const postSlice = createSlice({
 
       .addCase(__searchPost.fulfilled, (state, action) => {
         state.loading = false;
-        if (action.payload) {
-          state.list = action.payload;
-        }
+        // if (action.payload) {
+        //   state.list = action.payload;
+        // }
+        state.list = action.payload;
         state.session = true;
       })
 

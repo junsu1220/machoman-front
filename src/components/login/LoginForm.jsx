@@ -75,15 +75,7 @@ export default function LoginForm() {
       >
         로그인
       </Button>
-      <Button
-        onClick={submitKakaoLogin}
-        type="submit"
-        size="size1"
-        bgcolor={"yellow"}
-        color={"black"}
-      >
-        카카오 로그인
-      </Button>
+      <a href="http://15.164.164.146/user/kakao">카카오 로그인</a>
     </WrapForm>
   );
 }

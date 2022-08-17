@@ -36,7 +36,14 @@ const Post = () => {
 
   const addPost = () => {
     const formData = new FormData();
-    formData.append("image", fileInput.current.files[0]);
+    console.log(fileInput.current.files[0]);
+    console.log(defaultImg1);
+
+    if (fileInput.current.files[0] === undefined) {
+      formData.append("image", defaultImg1);
+    } else {
+      formData.append("image", fileInput.current.files[0]);
+    }
     formData.append("title", title_ref.current.value);
     formData.append("content", text_ref.current.value);
 
