@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { customAlphabet } from "nanoid";
 import PostSearch from "./postSearch";
 import { moreList, __loadPost } from "../../redux/modules/postSlice";
+import defaultImg1 from "../../src_assets/defaultImg1.png";
 
 const PostCard = () => {
   const post_list = useSelector((state) => state.post.list);
@@ -12,7 +13,6 @@ const PostCard = () => {
   const dispatch = useDispatch();
   const nanoid = customAlphabet("0123456789abcdef", 6);
   const [listState, setListState] = useState([]);
-
   const [lastPost, setLastPost] = useState(false);
 
   const storage = sessionStorage.getItem("category");
@@ -67,10 +67,14 @@ const PostCard = () => {
                     <h4>{dic.title}</h4>
                   </div>
                   <div>
-                    <img
-                      src={`http://15.164.164.146${dic.image}`}
-                      alt={"test"}
-                    />
+                    {true ? (
+                      <img
+                        src={`http://15.164.164.146${dic.image}`}
+                        alt="test"
+                      />
+                    ) : (
+                      <img src={defaultImg1} alt="test" />
+                    )}
                   </div>
                   <div>
                     <h4>{dic.content}</h4>
