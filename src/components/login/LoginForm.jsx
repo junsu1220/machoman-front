@@ -14,7 +14,6 @@ export default function LoginForm() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const changeInput = (e) => {
-    console.log(e.target);
     const { value, id } = e.target;
     setLoginData({ ...loginData, [id]: value });
   };

@@ -86,7 +86,7 @@ const Post = () => {
               />
             </div>
           </ImgSection>
-          <textarea ref={text_ref} defaultValue="내용을 입력하세요." />
+          <textarea ref={text_ref} />
         </StDetailContainer>
         <StCommentContainer>
           <button>
