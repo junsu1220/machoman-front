@@ -1,23 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux"
-import { __addComment } from "../../redux/modules/commentSlice";
+import { __addComment, __loadPost } from "../../redux/modules/commentSlice";
 import { customAlphabet } from "nanoid";
+import { useParams } from "react-router-dom";
 
 
 const CommentsBox = () => {
 
     const nanoid = customAlphabet("0123456789abcdef", 6);
-    const dispatch = useDispatch();    
-    const getCommentList = useSelector((state) => state.post)
+    const dispatch = useDispatch();
+    const {id} = useParams();
+    // const [inputvalue, setInputValue] = useState();
+    
+    const comment_ref = React.useRef("");
+    const getCommentList = useSelector((state) => state.comment)
     console.log(getCommentList)
 
-    const addComment = () => {
-      const formData = new FormData();
-      console.log("formData", formData);
 
-      dispatch(__addComment(formData));
-    };
+    useEffect(() => {
+      dispatch(__loadPost(id));
+    }, []);
+
+
+    console.log(comment_ref.current.value)
+    const addComment = () => {
+        
+        dispatch(__addComment({
+          comment: comment_ref.current.value,
+          id: id
+        }));
+    }
 
   return (
     <StDetailLayOut>
@@ -32,7 +45,7 @@ const CommentsBox = () => {
     </StCommentLayout>
     <StCommentContainer>
         <p>댓글 0</p>
-        <StCommentTextArea />
+        <StCommentTextArea ref={comment_ref}/>
         <StCommentBtn onClick={(addComment)}>등록</StCommentBtn>
     </StCommentContainer>
     </StDetailLayOut>
