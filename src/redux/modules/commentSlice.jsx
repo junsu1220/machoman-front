@@ -12,9 +12,9 @@ export const __loadPost = createAsyncThunk(
   "comment/LOAD_POST",
   async (payload) => {
     const response = await api.get(`post/${payload}`);
-    // console.log(response);
-    console.log(response.data.result.result.Comments);
-    return response.data.result.result.Comments;
+    console.log(response);
+    // console.log(response.data.result[0].Comments);
+    return response.data.result.result[0].Comments;
   }
 );
 
@@ -33,6 +33,7 @@ export const __addComment = createAsyncThunk(
   "comment/ADD_COMMENT",
   async (payload) => {
     const response = await api.post(`comment/create/${payload.id}`, payload);
+    console.log(payload)
     return response.data.result;
   }
 );
@@ -68,7 +69,7 @@ const commentSlice = createSlice({
 
       .addCase(__loadPost.fulfilled, (state, action) => {
         // state.loading = false;
-        console.log(action.payload);
+        // console.log(action.payload);
         state.list = action.payload;
         // state.session = true;
       })

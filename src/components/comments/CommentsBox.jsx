@@ -15,6 +15,7 @@ const CommentsBox = () => {
     
     const comment_ref = React.useRef("");
     const getCommentList = useSelector((state) => state.comment.list)
+    console.log(getCommentList)
 
     useEffect(() => {
       dispatch(__loadPost(id));
@@ -41,10 +42,10 @@ const CommentsBox = () => {
         return (
 
           <StCommentBox key={nanoid()}>
-            <p>작성자: </p>
+            <p>작성자: {cmt.User.nickname}</p>
             <div>
               <p>내용: {cmt.comment}</p>
-              <p>{cmt.createdAt}몇 분전</p>
+              <p>{cmt.createdAt.slice(0,10)}</p>
             </div>
             <div className="updateDiv">
               <p>수정</p>
@@ -56,7 +57,7 @@ const CommentsBox = () => {
         })}
     </StCommentLayout>
     <StCommentContainer>
-        <p>댓글 0</p>
+        <p>댓글 작성</p>
         <StCommentTextArea ref={comment_ref}/>
         <StCommentBtn onClick={(addComment)}>등록</StCommentBtn>
     </StCommentContainer>
@@ -128,9 +129,18 @@ const StCommentTextArea = styled.textarea`
 `;
 
 const StCommentBtn = styled.button`
-  width: 100px;
-  height: 30px;
-  margin-bottom: 40px;
+    width: 100px;
+    height: 40px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      background-color: #666666;
 `;
 
 export default CommentsBox;

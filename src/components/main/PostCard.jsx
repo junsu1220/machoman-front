@@ -57,7 +57,7 @@ const PostCard = () => {
         <PostSearch />
       </WrapSearch>
       <Warp>
-        {post_list.slice(0, listCount).map((dic, idx) => {
+        {post_list.slice(0, listCount)?.map((dic, idx) => {
           return (
             <PostBox key={nanoid()}>
               {/* Link 로 props 보내기를 활용해 상세페이지에 들어갈 때 데이터를 전송 */}
