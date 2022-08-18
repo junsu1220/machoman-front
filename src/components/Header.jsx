@@ -15,21 +15,21 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const sessionToken = sessionStorage.getItem("token");
+  const localToken = localStorage.getItem("token");
 
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const logOut = () => {
     alert("정상 로그아웃 되었습니다.");
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     dispatch(logOutUser());
     navigate("/");
   };
 
   React.useEffect(() => {
-    if (sessionToken) {
+    if (localToken) {
       dispatch(__checkToken());
     }
-  }, [sessionToken]);
+  }, [localToken]);
 
   return (
     <StHeader>

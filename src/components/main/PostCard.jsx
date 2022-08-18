@@ -15,7 +15,7 @@ const PostCard = () => {
   const [listState, setListState] = useState([]);
   const [lastPost, setLastPost] = useState(false);
 
-  const storage = sessionStorage.getItem("category");
+  const storage = localStorage.getItem("category");
 
   const handleScroll = (e, listState, listCount, lastPost) => {
     const scrollHeight = document.documentElement.scrollHeight;

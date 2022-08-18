@@ -7,7 +7,7 @@ export const __login = createAsyncThunk(
   async (payload, thunkAPI) => {
     const response = await api.post("/user/login", payload);
 
-    sessionStorage.setItem("token", response.data.result.result);
+    localStorage.setItem("token", response.data.result.result);
     return response.data;
   }
 );
@@ -17,7 +17,7 @@ export const __kakaoLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     const response = await api.get("/user/kakao");
 
-    sessionStorage.setItem("token", response.data.result.result);
+    localStorage.setItem("token", response.data.result.result);
     return response.data;
   }
 );

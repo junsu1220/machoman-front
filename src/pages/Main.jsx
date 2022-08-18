@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 const Main = (location) => {
   if (window.location.href.slice(29)) {
-    sessionStorage.setItem("token", window.location.href.slice(29));
+    localStorage.setItem("token", window.location.href.slice(29));
   }
   return (
     <Layout>

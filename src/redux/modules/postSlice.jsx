@@ -64,7 +64,7 @@ const postSlice = createSlice({
     list: [],
     loading: false,
     error: null,
-    session: false,
+    local: false,
     countList: 9,
     keyword: "writer",
   },
@@ -86,7 +86,7 @@ const postSlice = createSlice({
       .addCase(__loadPost.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload;
-        state.session = true;
+        state.local = true;
       })
 
       .addCase(__addPost.fulfilled, (state, action) => {
@@ -126,7 +126,7 @@ const postSlice = createSlice({
         //   state.list = action.payload;
         // }
         state.list = action.payload;
-        state.session = true;
+        state.local = true;
       })
 
       .addCase(__searchPost.rejected, (state, action) => {
