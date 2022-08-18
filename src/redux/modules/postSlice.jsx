@@ -4,7 +4,7 @@ import produce from "immer";
 
 export const __loadPost = createAsyncThunk("post/LOAD_POST", async () => {
   const response = await api.get("post");
-  return response.data.result.result;
+  return response.data.result.result[0];
 });
 
 export const __addPost = createAsyncThunk(

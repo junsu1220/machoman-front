@@ -19,7 +19,7 @@ const DetailInfo = () => {
         </StTitleLayout>
         <StWriterLayout>
           <span>작성자: {newPostData[0].nickname}</span>
-          <p>{newPostData[0].craetedAt}</p>
+          <p>{newPostData[0].createdAt}</p>
         </StWriterLayout>
         <StUpdateLayout>
             <p
@@ -32,13 +32,18 @@ const DetailInfo = () => {
             <p>|</p>
             <p>삭제</p>
           </StUpdateLayout>
+          <ImgSection>
           <div>
             <img
               src={`http://15.164.164.146${newPostData[0].image}`}
               alt="이미지를 불러 올 수 없으니 푸쉬업 10회"
             />
-            <p>{newPostData[0].content}</p>
           </div>
+          </ImgSection>
+          <ContentContainer>
+            <p> 내용 {newPostData[0].content}</p>
+            <p> 내용 {newPostData[0].content}</p>
+          </ContentContainer>
       </StDetailContainer>
     </StDetailLayOut>
   );
@@ -53,7 +58,7 @@ const StDetailLayOut = styled.div`
 
 const StDetailContainer = styled.div`
   width: 750px;
-  height: 500px;
+  height: 800px;
   border: 4px solid darkgray;
   border-radius: 5px;
   margin-top: 80px;
@@ -92,5 +97,45 @@ const StUpdateLayout = styled.div`
     }
   }
 `;
+
+const ImgSection = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    width: 60%;
+    height: 300px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    margin-left: 35px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    /* background-color: red; */
+    /* img.default {
+      flex: 1 1 auto;
+      min-height: 400px;
+      width: 100%;
+    } */
+  }
+`;
+
+const ContentContainer = styled.div`
+  width: 89%;
+  height: 300px;
+  margin: 35px;
+  margin-top: 0px;
+  /* background-color: green; */
+  padding: 5px;
+  & > p {
+    /* background-color: red; */
+    color: white;
+    font-size: 16px;
+  }
+
+`;
+
+
 
 export default DetailInfo;

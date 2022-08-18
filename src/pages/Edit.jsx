@@ -65,6 +65,9 @@ const Post = () => {
           <StTitleLayout>
             {" "}
             <h1>{newPostData[0].title}</h1>
+            {/* <input ref={title_ref}>
+              {newPostData[0].title} 
+            </input> */}
           </StTitleLayout>
           <StWriterLayout>
             <span>작성자: {newPostData[0].nickname}</span>
