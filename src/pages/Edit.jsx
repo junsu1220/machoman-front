@@ -6,7 +6,7 @@ import { useBeforeunload } from "react-beforeunload";
 
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __addPost } from "../redux/modules/postSlice";
+import { __addPost, __editPost } from "../redux/modules/postSlice";
 import defaultImg1 from "../src_assets/defaultImg1.png";
 
 const Post = () => {
@@ -15,8 +15,10 @@ const Post = () => {
   const [hastList, setHashList] = useState([]);
   const title_ref = React.useRef(null);
   const select_ref = React.useRef(null);
+  const { id } = useParams();
   const text_ref = React.useRef(null);
-  const postList = useSelector((state) => state.post);
+  const post_list = useSelector((state) => state.post.list);
+  const newPostData = post_list.filter((v) => v.id === Number(id));
 
   const fileInput = useRef(null);
 
@@ -34,14 +36,25 @@ const Post = () => {
     };
   };
 
-  const addPost = () => {
+  // const addPost = () => {
+  //   const formData = new FormData();
+
+  //   formData.append("image", fileInput.current.files[0]);
+  //   formData.append("title", title_ref.current.value);
+  //   formData.append("content", text_ref.current.value);
+
+  //   dispatch(__addPost(formData));
+  //   navigate("/");
+  // };
+
+  const editPost = () => {
     const formData = new FormData();
 
     formData.append("image", fileInput.current.files[0]);
     formData.append("title", title_ref.current.value);
     formData.append("content", text_ref.current.value);
 
-    dispatch(__addPost(formData));
+    dispatch(__editPost(formData));
     navigate("/");
   };
 
@@ -51,11 +64,11 @@ const Post = () => {
         <StDetailContainer>
           <StTitleLayout>
             {" "}
-            <input ref={title_ref} placeholder="제목을 입력하세요." />
+            <h1>{newPostData[0].title}</h1>
           </StTitleLayout>
           <StWriterLayout>
-            <span>작성자:</span>
-            <p>2022. 08. xx. 00:00</p>
+            <span>작성자: {newPostData[0].nickname}</span>
+            <p>{newPostData[0].craetedAt}</p>
           </StWriterLayout>
           <StUpdateLayout>
             <p
@@ -79,19 +92,21 @@ const Post = () => {
             />
             <div className="ImgDiv">
               <img
-                src={attachment ? attachment : defaultImg1}
+                src={`http://15.164.164.146${newPostData[0].image}` ? `http://15.164.164.146${newPostData[0].image}` : defaultImg1}
                 alt="업로드할 이미지"
                 className={attachment ? "default" : ""}
               />
             </div>
           </ImgSection>
-          <textarea ref={text_ref} />
+          <textarea ref={text_ref}>
+            {newPostData[0].content}
+          </textarea>
         </StDetailContainer>
         <StCommentContainer>
           <button>
             <label htmlFor="file-input">파일선택</label>
           </button>
-          <button onClick={addPost}>수정하기</button>
+          <button onClick={editPost}>수정하기</button>
         </StCommentContainer>
       </StDetailLayOut>
     </Layout>

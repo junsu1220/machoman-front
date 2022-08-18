@@ -17,6 +17,7 @@ const Post = () => {
   const select_ref = React.useRef(null);
   const text_ref = React.useRef(null);
   const postList = useSelector((state) => state.post);
+  const [img, setImg] = useState(defaultImg1);
 
   const fileInput = useRef(null);
 
@@ -36,13 +37,12 @@ const Post = () => {
 
   const addPost = () => {
     const formData = new FormData();
-    console.log(fileInput.current.files[0]);
-    console.log(defaultImg1);
+ 
 
     if (fileInput.current.files[0] === undefined) {
       formData.append("image", defaultImg1);
     } else {
-      formData.append("image", fileInput.current.files[0]);
+     formData.append("image", fileInput.current.files[0]);
     }
     formData.append("title", title_ref.current.value);
     formData.append("content", text_ref.current.value);
