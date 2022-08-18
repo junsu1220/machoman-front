@@ -7,12 +7,17 @@ import { api } from "../../shared/api";
 //   // console.log(response.data.result.result);
 //   return response.data.result.result;
 // });
-export const __loadPost = createAsyncThunk("comment/LOAD_POST", async (payload) => {
-  const response = await api.get(`post/${payload}`);
-  // console.log(response);
-  console.log(response.data.result.result.Comments);
-  return response.data.result.result.Comments;
-});
+
+export const __loadPost = createAsyncThunk(
+  "comment/LOAD_POST",
+  async (payload) => {
+    const response = await api.get(`post/${payload}`);
+    // console.log(response);
+    console.log(response.data.result.result.Comments);
+    return response.data.result.result.Comments;
+  }
+);
+
 
 // export const __addComment = createAsyncThunk(
 //   "comment/ADD_COMMENT",
@@ -35,7 +40,7 @@ export const __addComment = createAsyncThunk(
 export const __editComment = createAsyncThunk(
   "comment/EDIT_COMMENT",
   async (payload, thunkAPI) => {
-    const response = await api.put(`api/comment/${payload.id}`, payload);
+    const response = await api.put(`/comment/${payload.id}`, payload);
 
     return response.data;
   }
@@ -44,7 +49,7 @@ export const __editComment = createAsyncThunk(
 export const __deleteComment = createAsyncThunk(
   "comment/DELETE_COMMENT",
   async (payload, thunkAPI) => {
-    await api.delete(`/api/comment/${payload}`);
+    await api.delete(`/comment/${payload}`);
 
     return payload;
   }
@@ -63,7 +68,7 @@ const commentSlice = createSlice({
 
       .addCase(__loadPost.fulfilled, (state, action) => {
         // state.loading = false;
-        console.log(action.payload)
+        console.log(action.payload);
         state.list = action.payload;
         // state.session = true;
       })

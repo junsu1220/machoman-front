@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux"
-import { __addComment, __loadPost } from "../../redux/modules/commentSlice";
+import { __addComment, __deleteComment, __loadPost } from "../../redux/modules/commentSlice";
 import { customAlphabet } from "nanoid";
 import { useParams } from "react-router-dom";
 
@@ -14,34 +14,46 @@ const CommentsBox = () => {
     // const [inputvalue, setInputValue] = useState();
     
     const comment_ref = React.useRef("");
-    const getCommentList = useSelector((state) => state.comment)
-    console.log(getCommentList)
-
+    const getCommentList = useSelector((state) => state.comment.list)
 
     useEffect(() => {
       dispatch(__loadPost(id));
     }, []);
 
 
-    console.log(comment_ref.current.value)
     const addComment = () => {
-        
         dispatch(__addComment({
           comment: comment_ref.current.value,
           id: id
         }));
     }
 
+    const deleteComment = () => {
+      dispatch(__deleteComment({
+
+      }));
+    }
+
   return (
     <StDetailLayOut>
     <StCommentLayout>
-        <StCommentBox>
-          <p>작성자: ㅇㅇ</p>
-          <div>
-            <p>내용 : </p>
-            <p>몇 분전</p>
-          </div>
-        </StCommentBox>
+      {getCommentList?.map((cmt) => {
+        return (
+
+          <StCommentBox key={nanoid()}>
+            <p>작성자: </p>
+            <div>
+              <p>내용: {cmt.comment}</p>
+              <p>{cmt.createdAt}몇 분전</p>
+            </div>
+            <div className="updateDiv">
+              <p>수정</p>
+              <p>|</p>
+              <p>삭제</p>
+            </div>
+          </StCommentBox>
+        );
+        })}
     </StCommentLayout>
     <StCommentContainer>
         <p>댓글 0</p>
@@ -69,10 +81,26 @@ const StCommentBox = styled.div`
   border: 4px solid darkgray;
   color: white;
   padding: 15px;
+  margin: 10px;
+  margin-bottom: 15px;
 
   & > div {
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  & > .updateDiv {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+
+  & > p {
+    cursor: pointer;
+    &:hover {
+      font-weight: 700;
+    }
+  }
   }
 `;
 

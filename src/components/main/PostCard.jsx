@@ -67,14 +67,9 @@ const PostCard = () => {
                     <h4>{dic.title}</h4>
                   </div>
                   <div>
-                    {true ? (
-                      <img
-                        src={`http://15.164.164.146${dic.image}`}
-                        alt="test"
+                    <img src={
+                      `http://15.164.164.146null`===`http://15.164.164.146${dic.image}` ? defaultImg1 : `http://15.164.164.146${dic.image}`} alt="test"
                       />
-                    ) : (
-                      <img src={defaultImg1} alt="test" />
-                    )}
                   </div>
                   <div>
                     <h4>{dic.content}</h4>
